@@ -1,0 +1,12 @@
+# Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+
+# Logs
+*.log
+
+# IDE settings (optional, e.g., for VSCode)
+.vscode/
