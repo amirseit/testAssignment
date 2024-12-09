@@ -3,13 +3,15 @@ import re
 
 def detect_field_type(value: str) -> str:
     """Detect the type of a field based on its value."""
+    # Strict regex for phone number in the format: +7 xxx xxx xx xx
+    value = value.strip()  # Remove leading/trailing spaces
     if re.match(r"^\+7 \d{3} \d{3} \d{2} \d{2}$", value):
         return "phone"
     elif re.match(r"^\d{4}-\d{2}-\d{2}$", value) or re.match(r"^\d{2}\.\d{2}\.\d{4}$", value):
         return "date"
     try:
         # Validate email using email-validator
-        validate_email(value)  # This will raise EmailNotValidError if invalid
+        validate_email(value, check_deliverability=False)
         return "email"
     except EmailNotValidError:
         pass

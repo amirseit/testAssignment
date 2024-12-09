@@ -7,15 +7,16 @@ app = Flask(__name__)
 @app.route("/get_form", methods=["POST"])
 def get_form():
     form_data = request.form.to_dict()
-    templates = get_templates()
+    print("Form data received:", form_data)  # Debugging
 
+    templates = get_templates()
     for template in templates:
         try:
             validate_form_data(template["fields"], form_data)
             return jsonify({"template_name": template["name"]})
-        except ValueError:
-            continue
+        except ValueError as e:
+            print(f"Validation error: {e}")  # Log specific error
 
-    # If no match, return detected field types
     detected_types = {key: detect_field_type(value) for key, value in form_data.items()}
+    print("Detected types:", detected_types)  # Debugging
     return jsonify(detected_types), 400
