@@ -1,4 +1,4 @@
 POST http://127.0.0.1:5000/get_form
 Content-Type: application/x-www-form-urlencoded
 
-user_email=test@example.com&user_phone=%2B7%20123%20456%2078%2090&user_name=randomUsername&user_dob=1990-01-01
+user_email=test@example.com&user_phone=%2B7%20123%20456%2078%2090&user_dob=1990-01-01&user_name=randomUsername&user_phone=%2B7%20123%20456%2078%2090
